@@ -2,7 +2,7 @@
   "name": "Motion",
   "id": "motion",
   "description": {
-    "en": "Motion.",
+    "en": "Motion webcam streaming server.",
     "fr": "Motion."
   },
   "url": "http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome",

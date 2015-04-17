@@ -1,0 +1,37 @@
+{
+  "name": "Motion",
+  "id": "motion",
+  "description": {
+    "en": "Motion.",
+    "fr": "Motion."
+  },
+  "url": "http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome",
+  "maintainer": {
+    "name": "txmrl",
+    "email": "txmrl@txmrl.net"
+  },
+  "multi_instance": "false",
+  "arguments": {
+    "install": [
+      {
+        "name": "domain",
+        "type": "domain",
+        "ask": {
+          "en": "Choose a domain for Motion"
+          "fr": "Choisissez un nom de domaine pour Motion"
+        },
+        "example": "domain.org"
+      },
+      {
+        "name": "path",
+        "type": "path",
+        "ask": {
+          "en": "Choose a path for Motion"
+          "fr": "Choisissez un chemin pour Motion"
+        },
+        "example": "/motion",
+        "default": "/motion"
+      }
+    ]
+  }
+}

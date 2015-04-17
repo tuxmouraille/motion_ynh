@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Retrieve arguments
+domain=$1
+path=$2
+
+
+# Check path availability
+sudo yunohost app checkurl $domain$path -a motion
+if [[ ! $? -eq 0 ]]; then
+  exit 1
+fi
+
+# Remove trailing "/" for next commands
+path=${path%/}
+
+# Check port availability
+sudo yunohost app checkport 8081
+if [[ ! $? -eq 0 ]]; then
+  exit 1
+fi
+
+# Install motion
+sudo apt-get install motion -y -qq
+
+# Install and monitor service
+sudo yunohost service add motion
+sudo service motion restart
+
+# Configure Nginx and reload
+sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/motion.conf
+sudo service nginx reload
+
+sudo yunohost app ssowatconf
+
+echo $?

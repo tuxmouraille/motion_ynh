@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+# Stop and remove motion service
+sudo service motion stop
+sudo yunohost service remove motion
+
+# Remove motion binairy
+sudo apt-get autoremove motion --purge
+
+# Remove motion nginx configuration
+domain=$(sudo yunohost app setting motion domain)
+sudo rm /etc/nginx/conf.d/$domain.d/motion.conf
+
+# Reload nginx and update ssowatch
+sudo service nginx reload
+sudo yunohost app ssowatconf
+
+echo $?
